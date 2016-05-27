@@ -34,6 +34,14 @@ abstract class Container implements ContractsContainer
     }
 
     /**
+     * @return \Pimple\Container
+     */
+    public function getContainer()
+    {
+        return $this->container;
+    }
+    
+    /**
      * 注册容器
      */
     protected function registerContainer()

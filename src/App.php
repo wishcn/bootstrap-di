@@ -4,6 +4,8 @@ namespace Bootdi;
 
 
 use Bootdi\Container\Container;
+use Bootdi\Providers\ConfigProvider;
+use Bootdi\Providers\DotEnvProvider;
 
 class App extends Container
 {
@@ -35,6 +37,15 @@ class App extends Container
     }
 
     /**
+     * register provider
+     */
+    protected function registerProvider()
+    {
+        $this->container->register(new DotEnvProvider());
+        $this->container->register(new ConfigProvider());
+    }
+
+    /**
      * @param $basePath
      */
     protected function setBasePath($basePath)
@@ -55,13 +66,15 @@ class App extends Container
     }
 
     /**
-     * path
+     * return container
      *
-     * @return string
+     * @param string $abstract
+     * @param array $parameters
+     * @return mixed
      */
-    public function path()
+    public function make($abstract, $parameters = [])
     {
-        return $this->basePath;
+        return $this->container->offsetGet($abstract);
     }
 
     /**
@@ -70,6 +83,16 @@ class App extends Container
      * @return string
      */
     public function basePath()
+    {
+        return $this->basePath;
+    }
+
+    /**
+     * path
+     *
+     * @return string
+     */
+    public function path()
     {
         return $this->basePath . DIRECTORY_SEPARATOR . 'app';
     }
