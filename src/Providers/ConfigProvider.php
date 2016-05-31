@@ -3,24 +3,26 @@
 namespace Bootdi\Providers;
 
 
+use Bootdi\App;
+use Bootdi\Contracts\Providers\ServiceProvider;
 use Noodlehaus\Config;
-use Pimple\Container;
-use Pimple\ServiceProviderInterface;
 
-class ConfigProvider implements ServiceProviderInterface
+class ConfigProvider implements ServiceProvider
 {
 
     /**
-     * Registers services on the given container.
+     * bootstrap service
      *
-     * This method should only be used to configure services and parameters.
-     * It should not get services.
-     *
-     * @param Container $pimple A container instance
+     * @param App $app
+     * @return mixed
      */
-    public function register(Container $pimple)
+    public function bootstrap(App $app)
     {
-        $conf = new Config($pimple->offsetGet("path.config"));
-        $pimple->offsetSet("config", $conf);
+        $conf = new Config($app->make("path.config"));
+        $app->instance("config", $conf);
+
+        date_default_timezone_set($conf->get("app.timezone"));
+
+        mb_internal_encoding('UTF-8');
     }
 }

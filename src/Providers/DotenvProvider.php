@@ -3,24 +3,22 @@
 namespace Bootdi\Providers;
 
 
+use Bootdi\App;
+use Bootdi\Contracts\Providers\ServiceProvider;
 use Dotenv\Dotenv;
-use Pimple\Container;
-use Pimple\ServiceProviderInterface;
 
-class DotEnvProvider implements ServiceProviderInterface
+class DotEnvProvider implements ServiceProvider
 {
 
     /**
-     * Registers services on the given container.
+     * bootstrap service
      *
-     * This method should only be used to configure services and parameters.
-     * It should not get services.
-     *
-     * @param Container $pimple A container instance
+     * @param App $app
+     * @return mixed
      */
-    public function register(Container $pimple)
+    public function bootstrap(App $app)
     {
-        $dotEnv = new Dotenv($pimple->offsetGet("path"));
+        $dotEnv = new Dotenv($app->make("path"));
         $dotEnv->load();
     }
 }

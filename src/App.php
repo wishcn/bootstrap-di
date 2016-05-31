@@ -32,17 +32,8 @@ class App extends Container
     {
         self::setInstance($this);
 
-        $this->container->offsetSet('app', $this);
-        $this->container->offsetSet('container', $this->container);
-    }
-
-    /**
-     * register provider
-     */
-    protected function registerProvider()
-    {
-        $this->container->register(new DotEnvProvider());
-        $this->container->register(new ConfigProvider());
+        $this->instance('app', $this);
+        $this->instance('container', $this->container);
     }
 
     /**
@@ -60,9 +51,32 @@ class App extends Container
      */
     protected function setPathsInContainer()
     {
-        $this->container->offsetSet('path', $this->path());
-        $this->container->offsetSet('path.base', $this->basePath());
-        $this->container->offsetSet('path.config', $this->configPath());
+        $this->instance('path', $this->path());
+        $this->instance('path.base', $this->basePath());
+        $this->instance('path.config', $this->configPath());
+    }
+
+    /**
+     * init bootstrap
+     *
+     * @param array $bootstrappers
+     */
+    public function bootstrapWith(array $bootstrappers)
+    {
+        foreach ($bootstrappers as $bootstrapper) {
+            $this->make($bootstrapper)->bootstrap($this);
+        }
+    }
+
+    /**
+     * instance object
+     *
+     * @param $abstract
+     * @param $instance
+     */
+    public function instance($abstract, $instance)
+    {
+        $this->container->offsetSet($abstract, $instance);
     }
 
     /**
