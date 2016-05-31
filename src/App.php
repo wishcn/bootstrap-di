@@ -86,6 +86,12 @@ class App extends Container
      */
     public function make($abstract, $parameters = [])
     {
+        if ( $this->container->offsetExists($abstract) ) {
+            return $this->container->offsetGet($abstract);
+        }
+
+        $this->instance($abstract, new $abstract());
+
         return $this->container->offsetGet($abstract);
     }
 
