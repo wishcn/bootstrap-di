@@ -20,9 +20,7 @@ class App extends Container
 
         $this->registerBaseBindings();
 
-        if ($basePath) {
-            $this->setBasePath($basePath);
-        }
+        $basePath && $this->setBasePath($basePath);
     }
 
     /**
