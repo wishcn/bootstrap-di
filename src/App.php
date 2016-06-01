@@ -57,12 +57,12 @@ class App extends Container
     /**
      * register
      *
-     * @param array $services
      */
-    public function registerServiceProvider(array $services)
+    public function registerConfigProviders()
     {
-        foreach ($services as $service) {
-            $this->make($service)->register($this);
+        $providers = config("app.providers", []);
+        foreach ($providers as $provider) {
+            $this->make($provider)->register($this);
         }
     }
 

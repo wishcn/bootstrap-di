@@ -11,6 +11,14 @@ if (!function_exists("app")) {
     }
 }
 
+if (!function_exists("config")) {
+    function config($key, $defValue = null)
+    {
+        $app =\Bootdi\App::getInstance();
+        return $app->make("config")->get($key, $defValue);
+    }
+}
+
 if (!function_exists("env")) {
     function env($name)
     {
