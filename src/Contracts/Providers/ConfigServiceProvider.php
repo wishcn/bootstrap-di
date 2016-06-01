@@ -3,9 +3,9 @@
 namespace Bootdi\Contracts\Providers;
 
 
-use Pimple\ServiceProviderInterface;
+use Bootdi\App;
 
-interface ConfigServiceProvider extends ServiceProviderInterface
+interface ConfigServiceProvider
 {
-
+    public function register(App $app);
 }
