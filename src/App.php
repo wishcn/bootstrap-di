@@ -109,6 +109,9 @@ class App extends Container
         return $this->basePath . DIRECTORY_SEPARATOR . 'app';
     }
 
+    /**
+     * @return string
+     */
     public function configPath()
     {
         return $this->basePath . DIRECTORY_SEPARATOR . 'config';
