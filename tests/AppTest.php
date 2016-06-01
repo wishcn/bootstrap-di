@@ -28,14 +28,14 @@ class AppTest extends PHPUnit_Framework_TestCase
 
     public function testProvider()
     {
-        $this->app->make(\Bootdi\Contracts\Http\Kernel::class)->start();
+        $this->app->make(\Bootdi\Http\Kernel::class)->start();
 
         $this->assertNotNull($this->app->make("config"));
     }
 
     public function testConfigProvider()
     {
-        $this->app->make(\Bootdi\Contracts\Http\Kernel::class)->start();
+        $this->app->make(\Bootdi\Http\Kernel::class)->start();
 
         $this->assertNull(config("app.providers"));
         $this->assertTrue(config("app.debug"));

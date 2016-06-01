@@ -14,7 +14,7 @@
         "php": ">= 5.5",
         "vlucas/phpdotenv": "^2.2",
         "pimple/pimple": "^3.0",
-        "hassankhan/config": "^0.10.0"
+        "mrjgreen/config": "^2.0"
     },
     "autoload": {
         "psr-4": {

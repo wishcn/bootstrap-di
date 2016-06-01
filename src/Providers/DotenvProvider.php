@@ -18,7 +18,7 @@ class DotEnvProvider implements ServiceProvider
      */
     public function bootstrap(App $app)
     {
-        $dotEnv = new Dotenv($app->make("path"));
+        $dotEnv = new Dotenv($app->make("path.base"));
         $dotEnv->load();
     }
 }

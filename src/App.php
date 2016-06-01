@@ -4,8 +4,10 @@ namespace Bootdi;
 
 
 use Bootdi\Container\Container;
+use Bootdi\Exceptions\ContainerException;
 use Bootdi\Providers\ConfigProvider;
 use Bootdi\Providers\DotEnvProvider;
+use Noodlehaus\Exception;
 
 class App extends Container
 {
@@ -95,6 +97,7 @@ class App extends Container
      * @param string $abstract
      * @param array $parameters
      * @return mixed
+     * @throws ContainerException
      */
     public function make($abstract, $parameters = [])
     {
@@ -103,8 +106,11 @@ class App extends Container
             return $this->container->offsetGet($normalAbstract);
         }
 
-        $this->instance($normalAbstract, new $abstract());
+        if ( !class_exists($abstract) ) {
+            throw new ContainerException("Class {$abstract} does not exist");
+        }
 
+        $this->instance($normalAbstract, new $abstract());
         return $this->container->offsetGet($normalAbstract);
     }
 

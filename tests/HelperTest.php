@@ -24,9 +24,4 @@ class HelperTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($this->app, app());
         $this->assertEquals($this->container, app("container"));
     }
-
-    public function testEnv()
-    {
-        $this->assertEquals(false, env("APP_DEBUG"));
-    }
 }

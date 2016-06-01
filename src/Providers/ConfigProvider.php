@@ -5,7 +5,8 @@ namespace Bootdi\Providers;
 
 use Bootdi\App;
 use Bootdi\Contracts\Providers\ServiceProvider;
-use Noodlehaus\Config;
+use Config\Loader\FileLoader;
+use Config\Repository;
 
 class ConfigProvider implements ServiceProvider
 {
@@ -18,7 +19,7 @@ class ConfigProvider implements ServiceProvider
      */
     public function bootstrap(App $app)
     {
-        $conf = new Config($app->make("path.config"));
+        $conf = new Repository(new FileLoader($app->make("path.config")), "");
         $app->instance("config", $conf);
 
         date_default_timezone_set($conf->get("app.timezone"));
