@@ -41,7 +41,7 @@ class App extends Container
      */
     private function registerCoreService()
     {
-        $this->make(EventProvider::class)->register($this);
+        $this->make(EventProvider::class)->bootstrap($this);
     }
 
     /**
