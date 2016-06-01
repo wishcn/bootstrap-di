@@ -14,7 +14,7 @@ if (!function_exists("app")) {
 if (!function_exists("config")) {
     function config($key, $defValue = null)
     {
-        $app =\Bootdi\App::getInstance();
+        $app = \Bootdi\App::getInstance();
         return $app->make("config")->get($key, $defValue);
     }
 }

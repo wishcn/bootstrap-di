@@ -55,7 +55,7 @@ class App extends Container
     }
 
     /**
-     * register
+     * register config providers
      *
      */
     public function registerConfigProviders()
