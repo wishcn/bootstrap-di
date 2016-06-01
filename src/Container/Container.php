@@ -48,4 +48,9 @@ abstract class Container implements ContractsContainer
     {
         $this->container = new \Pimple\Container();
     }
+
+    protected function normalize($service)
+    {
+        return is_string($service) ? ltrim($service, '\\') : $service;
+    }
 }

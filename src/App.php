@@ -55,6 +55,18 @@ class App extends Container
     }
 
     /**
+     * register
+     *
+     * @param array $services
+     */
+    public function registerServiceProvider(array $services)
+    {
+        foreach ($services as $service) {
+            $this->make($service)->register($this);
+        }
+    }
+
+    /**
      * init bootstrap
      *
      * @param array $bootstrappers
@@ -86,13 +98,14 @@ class App extends Container
      */
     public function make($abstract, $parameters = [])
     {
-        if ( $this->container->offsetExists($abstract) ) {
-            return $this->container->offsetGet($abstract);
+        $normalAbstract = $this->normalize($abstract);
+        if ( $this->container->offsetExists($normalAbstract) ) {
+            return $this->container->offsetGet($normalAbstract);
         }
 
-        $this->instance($abstract, new $abstract());
+        $this->instance($normalAbstract, new $abstract());
 
-        return $this->container->offsetGet($abstract);
+        return $this->container->offsetGet($normalAbstract);
     }
 
     /**
