@@ -26,6 +26,21 @@ class AppTest extends PHPUnit_Framework_TestCase
         $this->container = $this->app->getContainer();
     }
 
+    public function testProvider()
+    {
+        $this->app->make(\Bootdi\Contracts\Http\Kernel::class)->start();
+
+        $this->assertNotNull($this->app->make("config"));
+    }
+
+    public function testConfigProvider()
+    {
+        $this->app->make(\Bootdi\Contracts\Http\Kernel::class)->start();
+
+        $this->assertNull(config("app.providers"));
+        $this->assertTrue(config("app.debug"));
+    }
+
     public function testDi()
     {
         $this->assertEquals($this->app, $this->app->getInstance());
@@ -33,8 +48,8 @@ class AppTest extends PHPUnit_Framework_TestCase
 
     public function testContainer()
     {
-        $this->assertEquals($this->app, $this->container->offsetGet('app'));
-        $this->assertEquals($this->container, $this->container->offsetGet('container'));
+        $this->assertEquals($this->app, $this->app->make('app'));
+        $this->assertEquals($this->container, $this->app->make('container'));
     }
 
     public function testMake()
