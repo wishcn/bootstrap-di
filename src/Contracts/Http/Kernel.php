@@ -6,7 +6,6 @@ namespace Bootdi\Contracts\Http;
 interface Kernel
 {
     /**
-     * run kernel
      *
      * @return mixed
      */

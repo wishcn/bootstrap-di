@@ -25,9 +25,6 @@ abstract class Container implements ContractsContainer
         return self::$instance;
     }
 
-    /**
-     * @param \Bootdi\Contracts\Container\Container $instance
-     */
     public static function setInstance($instance)
     {
         self::$instance = $instance;
@@ -41,9 +38,6 @@ abstract class Container implements ContractsContainer
         return $this->container;
     }
     
-    /**
-     * 注册容器
-     */
     protected function registerContainer()
     {
         $this->container = new \Pimple\Container();

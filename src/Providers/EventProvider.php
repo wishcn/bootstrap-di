@@ -10,8 +10,6 @@ class EventProvider implements ServiceProvider
 {
 
     /**
-     * bootstrap service
-     *
      * @param App $app
      * @return mixed
      */

@@ -25,9 +25,6 @@ class App extends Container
         $basePath && $this->setBasePath($basePath);
     }
 
-    /**
-     * set bindings
-     */
     protected function registerBaseBindings()
     {
         self::setInstance($this);
@@ -36,17 +33,11 @@ class App extends Container
         $this->instance('container', $this->container);
     }
 
-    /**
-     * register core service
-     */
     private function registerCoreService()
     {
         $this->make(EventProvider::class)->bootstrap($this);
     }
 
-    /**
-     * @param $basePath
-     */
     protected function setBasePath($basePath)
     {
         $this->basePath = rtrim($basePath, '\/');
@@ -54,9 +45,6 @@ class App extends Container
         $this->setPathsInContainer();
     }
 
-    /**
-     * set paths
-     */
     protected function setPathsInContainer()
     {
         $this->instance('path', $this->path());
@@ -64,10 +52,6 @@ class App extends Container
         $this->instance('path.config', $this->configPath());
     }
 
-    /**
-     * register config providers
-     *
-     */
     public function registerConfigProviders()
     {
         $providers = config("app.providers", []);
@@ -76,11 +60,6 @@ class App extends Container
         }
     }
 
-    /**
-     * init bootstrap
-     *
-     * @param array $bootstrappers
-     */
     public function bootstrapWith(array $bootstrappers)
     {
         foreach ($bootstrappers as $bootstrapper) {
@@ -88,20 +67,12 @@ class App extends Container
         }
     }
 
-    /**
-     * instance object
-     *
-     * @param $abstract
-     * @param $instance
-     */
     public function instance($abstract, $instance)
     {
         $this->container->offsetSet($abstract, $instance);
     }
 
     /**
-     * return container
-     *
      * @param string $abstract
      * @param array $parameters
      * @return mixed
@@ -123,8 +94,6 @@ class App extends Container
     }
 
     /**
-     * base path
-     *
      * @return string
      */
     public function basePath()
@@ -133,8 +102,6 @@ class App extends Container
     }
 
     /**
-     * path
-     *
      * @return string
      */
     public function path()
@@ -142,9 +109,6 @@ class App extends Container
         return $this->basePath . DIRECTORY_SEPARATOR . 'app';
     }
 
-    /**
-     * config path
-     */
     public function configPath()
     {
         return $this->basePath . DIRECTORY_SEPARATOR . 'config';

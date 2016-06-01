@@ -16,8 +16,6 @@ class Kernel implements \Bootdi\Contracts\Http\Kernel
     }
 
     /**
-     * run kernel
-     *
      * @return mixed
      */
     public function start()

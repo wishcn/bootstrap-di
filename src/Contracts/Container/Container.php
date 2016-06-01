@@ -6,7 +6,6 @@ namespace Bootdi\Contracts\Container;
 interface Container
 {
     /**
-     * return container
      *
      * @param string $abstract
      * @param array $parameters

@@ -12,8 +12,6 @@ class ConfigProvider implements ServiceProvider
 {
 
     /**
-     * bootstrap service
-     *
      * @param App $app
      * @return mixed
      */
