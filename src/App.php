@@ -5,9 +5,7 @@ namespace Bootdi;
 
 use Bootdi\Container\Container;
 use Bootdi\Exceptions\ContainerException;
-use Bootdi\Providers\ConfigProvider;
-use Bootdi\Providers\DotEnvProvider;
-use Noodlehaus\Exception;
+use Bootdi\Providers\EventProvider;
 
 class App extends Container
 {
@@ -22,6 +20,8 @@ class App extends Container
 
         $this->registerBaseBindings();
 
+        $this->registerCoreService();
+
         $basePath && $this->setBasePath($basePath);
     }
 
@@ -34,6 +34,14 @@ class App extends Container
 
         $this->instance('app', $this);
         $this->instance('container', $this->container);
+    }
+
+    /**
+     * register core service
+     */
+    private function registerCoreService()
+    {
+        $this->make(EventProvider::class)->register($this);
     }
 
     /**
@@ -110,7 +118,7 @@ class App extends Container
             throw new ContainerException("Class {$abstract} does not exist");
         }
 
-        $this->instance($normalAbstract, new $abstract());
+        $this->instance($normalAbstract, new $abstract($this));
         return $this->container->offsetGet($normalAbstract);
     }
 

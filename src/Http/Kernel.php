@@ -3,7 +3,6 @@
 namespace Bootdi\Http;
 
 
-use Bootdi\App;
 use Bootdi\Providers\ConfigProvider;
 use Bootdi\Providers\DotEnvProvider;
 
