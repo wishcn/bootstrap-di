@@ -37,7 +37,7 @@ class AppTest extends PHPUnit_Framework_TestCase
     {
         $this->app->make(\Bootdi\Http\Kernel::class)->start();
 
-        $this->assertNull(config("app.providers"));
+        $this->assertNotNull(config("app.providers"));
         $this->assertTrue(config("app.debug"));
     }
 

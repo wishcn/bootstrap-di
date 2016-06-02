@@ -8,7 +8,6 @@ use Bootdi\App;
 interface ServiceProvider
 {
     /**
-     *
      * @param App $app
      * @return mixed
      */
