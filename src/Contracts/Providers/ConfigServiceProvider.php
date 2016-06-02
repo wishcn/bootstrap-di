@@ -8,7 +8,7 @@ use Bootdi\App;
 interface ConfigServiceProvider
 {
     /**
-     * @param App $app
+     * @param \Bootdi\App $app
      * @return mixed
      */
     public function register(App $app);

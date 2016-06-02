@@ -12,7 +12,7 @@ class ConfigProvider implements ServiceProvider
 {
 
     /**
-     * @param App $app
+     * @param \Bootdi\App $app
      * @return mixed
      */
     public function bootstrap(App $app)

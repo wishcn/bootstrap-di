@@ -8,7 +8,7 @@ use Bootdi\App;
 interface ServiceProvider
 {
     /**
-     * @param App $app
+     * @param \Bootdi\App $app
      * @return mixed
      */
     public function bootstrap(App $app);
