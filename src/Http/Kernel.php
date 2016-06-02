@@ -23,7 +23,7 @@ class Kernel implements \Bootdi\Contracts\Http\Kernel
     /**
      * @return mixed
      */
-    public function handle()
+    public function bootstrap()
     {
         $this->app->bootstrapWith([
             DotEnvProvider::class,

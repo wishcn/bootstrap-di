@@ -8,5 +8,5 @@ interface Kernel
     /**
      * @return mixed
      */
-    public function handle();
+    public function bootstrap();
 }
