@@ -4,7 +4,6 @@ namespace Bootdi;
 
 
 use Bootdi\Container\Container;
-use Bootdi\Exceptions\ContainerException;
 use Bootdi\Providers\EventProvider;
 
 class App extends Container
@@ -65,32 +64,6 @@ class App extends Container
         foreach ($bootstrappers as $bootstrapper) {
             $this->make($bootstrapper)->bootstrap($this);
         }
-    }
-
-    public function instance($abstract, $instance)
-    {
-        $this->container->offsetSet($abstract, $instance);
-    }
-
-    /**
-     * @param string $abstract
-     * @param array $parameters
-     * @return mixed
-     * @throws ContainerException
-     */
-    public function make($abstract, $parameters = [])
-    {
-        $normalAbstract = $this->normalize($abstract);
-        if ( $this->container->offsetExists($normalAbstract) ) {
-            return $this->container->offsetGet($normalAbstract);
-        }
-
-        if ( !class_exists($abstract) ) {
-            throw new ContainerException("Class {$abstract} does not exist");
-        }
-
-        $this->instance($normalAbstract, new $abstract($this));
-        return $this->container->offsetGet($normalAbstract);
     }
 
     /**
