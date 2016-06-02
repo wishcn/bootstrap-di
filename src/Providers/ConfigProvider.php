@@ -17,7 +17,7 @@ class ConfigProvider implements ServiceProvider
      */
     public function bootstrap(App $app)
     {
-        $conf = new Repository(new FileLoader($app->make("path.config")), "");
+        $conf = new Repository(new FileLoader($app->configPath()), "");
         $app->instance("config", $conf);
 
         date_default_timezone_set($conf->get("app.timezone"));
