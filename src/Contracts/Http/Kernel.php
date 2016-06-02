@@ -6,8 +6,7 @@ namespace Bootdi\Contracts\Http;
 interface Kernel
 {
     /**
-     *
      * @return mixed
      */
-    public function start();
+    public function handle();
 }
