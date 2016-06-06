@@ -55,7 +55,7 @@ class App extends Container
     {
         $providers = config("app.providers", []);
         foreach ($providers as $provider) {
-            $this->make($provider)->register($this);
+            $this->make($provider)->boot($this);
         }
     }
 

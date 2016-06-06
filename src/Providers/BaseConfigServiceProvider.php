@@ -13,16 +13,12 @@ abstract class BaseConfigServiceProvider implements ConfigServiceProvider
      */
     protected $app;
 
-    /**
-     * @param \Bootdi\App $app
-     * @return mixed
-     */
-    public function register(App $app)
+    public function boot(App $app)
     {
         $this->app = $app;
     }
 
-    public function boot()
+    public function register()
     {
     }
 }
