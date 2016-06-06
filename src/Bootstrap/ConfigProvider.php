@@ -1,6 +1,6 @@
 <?php
 
-namespace Bootdi\Providers;
+namespace Bootdi\Boostrap;
 
 
 use Bootdi\App;

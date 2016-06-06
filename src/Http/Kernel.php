@@ -4,9 +4,9 @@ namespace Bootdi\Http;
 
 
 use Bootdi\App;
-use Bootdi\Providers\ConfigProvider;
-use Bootdi\Providers\DotEnvProvider;
-use Bootdi\Providers\LoadConfigProvider;
+use Bootdi\Boostrap\ConfigProvider;
+use Bootdi\Boostrap\DotEnvProvider;
+use Bootdi\Boostrap\LoadConfigProvider;
 
 class Kernel implements \Bootdi\Contracts\Http\Kernel
 {

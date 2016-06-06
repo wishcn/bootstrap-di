@@ -4,7 +4,7 @@ namespace Bootdi;
 
 
 use Bootdi\Container\Container;
-use Bootdi\Providers\EventProvider;
+use Bootdi\Boostrap\EventProvider;
 
 class App extends Container
 {

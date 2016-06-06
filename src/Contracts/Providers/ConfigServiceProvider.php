@@ -12,4 +12,6 @@ interface ConfigServiceProvider
      * @return mixed
      */
     public function register(App $app);
+
+    public function boot();
 }
