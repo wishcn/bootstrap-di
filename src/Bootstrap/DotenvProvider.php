@@ -4,6 +4,7 @@ namespace Bootdi\Bootstrap;
 
 
 use Bootdi\App;
+use Bootdi\Providers\BaseServiceProvider;
 use Dotenv\Dotenv;
 
 class DotEnvProvider extends BaseServiceProvider
