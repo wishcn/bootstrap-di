@@ -11,10 +11,6 @@ use Config\Repository;
 class ConfigProvider extends BaseServiceProvider
 {
 
-    /**
-     * @param \Bootdi\App $app
-     * @return mixed
-     */
     public function bootstrap(App $app)
     {
         $conf = new Repository(new FileLoader($app->configPath()), "");
