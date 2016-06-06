@@ -4,9 +4,9 @@ namespace Bootdi\Boostrap;
 
 
 use Bootdi\App;
-use Bootdi\Contracts\Providers\ServiceProvider;
+use Bootdi\Providers\BaseServiceProvider;
 
-class LoadConfigProvider implements ServiceProvider
+class LoadConfigProvider extends BaseServiceProvider
 {
 
     /**

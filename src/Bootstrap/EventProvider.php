@@ -7,7 +7,7 @@ use Bootdi\App;
 use Bootdi\Contracts\Providers\ServiceProvider;
 use Evenement\EventEmitter;
 
-class EventProvider implements ServiceProvider
+class EventProvider extends BaseServiceProvider
 {
 
     /**

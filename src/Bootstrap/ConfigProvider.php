@@ -4,11 +4,11 @@ namespace Bootdi\Boostrap;
 
 
 use Bootdi\App;
-use Bootdi\Contracts\Providers\ServiceProvider;
+use Bootdi\Providers\BaseServiceProvider;
 use Config\Loader\FileLoader;
 use Config\Repository;
 
-class ConfigProvider implements ServiceProvider
+class ConfigProvider extends BaseServiceProvider
 {
 
     /**

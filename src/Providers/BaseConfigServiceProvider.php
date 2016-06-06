@@ -21,4 +21,8 @@ abstract class BaseConfigServiceProvider implements ConfigServiceProvider
     {
         $this->app = $app;
     }
+
+    public function boot()
+    {
+    }
 }
