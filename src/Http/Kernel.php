@@ -20,9 +20,6 @@ class Kernel implements \Bootdi\Contracts\Http\Kernel
         $this->app = app();
     }
 
-    /**
-     * @return mixed
-     */
     public function bootstrap()
     {
         $this->app->bootstrapWith([
