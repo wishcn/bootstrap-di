@@ -5,7 +5,7 @@ namespace Bootdi\Http;
 
 use Bootdi\App;
 use Bootdi\Bootstrap\ConfigProvider;
-use Bootdi\Bootstrap\DotEnvProvider;
+use Bootdi\Bootstrap\DotenvProvider;
 use Bootdi\Bootstrap\LoadConfigProvider;
 
 class Kernel implements \Bootdi\Contracts\Http\Kernel
@@ -23,7 +23,7 @@ class Kernel implements \Bootdi\Contracts\Http\Kernel
     public function bootstrap()
     {
         $this->app->bootstrapWith([
-            DotEnvProvider::class,
+            DotenvProvider::class,
             ConfigProvider::class,
             LoadConfigProvider::class,
         ]);
