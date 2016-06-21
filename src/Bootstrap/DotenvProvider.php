@@ -7,7 +7,7 @@ use Bootdi\App;
 use Bootdi\Providers\BaseServiceProvider;
 use Dotenv\Dotenv;
 
-class DotEnvProvider extends BaseServiceProvider
+class DotenvProvider extends BaseServiceProvider
 {
 
     public function bootstrap(App $app)
