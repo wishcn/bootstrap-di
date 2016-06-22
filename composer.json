@@ -16,7 +16,8 @@
         "pimple/pimple": "^3.0",
         "mrjgreen/config": "^2.0",
         "nesbot/carbon": "~1.14",
-        "evenement/evenement": "^2.0"
+        "evenement/evenement": "^2.0",
+        "danielstjules/stringy": "^2.3"
     },
     "autoload": {
         "psr-4": {
