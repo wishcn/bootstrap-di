@@ -21,6 +21,8 @@ class App extends Container
 
         $this->registerCoreService();
 
+        $this->registerCoreContainerAliases();
+
         $basePath && $this->setBasePath($basePath);
     }
 
@@ -35,6 +37,19 @@ class App extends Container
     private function registerCoreService()
     {
         $this->make(EventProvider::class)->bootstrap($this);
+    }
+
+    private function registerCoreContainerAliases()
+    {
+        $aliases = [
+            'app' => ['Bootdi\App',],
+        ];
+
+        foreach ($aliases as $key => $aliases) {
+            foreach ($aliases as $alias) {
+                $this->alias($key, $alias);
+            }
+        }
     }
 
     protected function setBasePath($basePath)

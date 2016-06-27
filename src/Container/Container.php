@@ -19,6 +19,11 @@ abstract class Container implements ContractsContainer
     protected $container;
 
     /**
+     * @var array
+     */
+    protected $alias;
+
+    /**
      * @return \Bootdi\Contracts\Container\Container
      */
     public static function getInstance()
@@ -29,6 +34,11 @@ abstract class Container implements ContractsContainer
     public static function setInstance($instance)
     {
         self::$instance = $instance;
+    }
+
+    protected function alias($abstract, $alias)
+    {
+        $this->alias[$alias] = $this->normalize($abstract);
     }
 
     /**
@@ -48,8 +58,47 @@ abstract class Container implements ContractsContainer
             throw new ContainerException("Class {$abstract} does not exist");
         }
 
-        $this->instance($normalAbstract, new $abstract($this));
+        $reflector = new \ReflectionClass($abstract);
+        if (!$reflector->isInstantiable()) {
+            throw new ContainerException("Can't instantiate this");
+        }
+
+        $constructor = $reflector->getConstructor();
+        if (is_null($constructor)) {
+            return new $abstract;
+        }
+
+        $parameters = $constructor->getParameters();
+        $dependencies = $this->getDependencies($parameters);
+        $builder = $reflector->newInstanceArgs($dependencies);
+
+        $this->instance($normalAbstract, $builder);
         return $this->container->offsetGet($normalAbstract);
+    }
+
+    private function getDependencies($parameters)
+    {
+        $dependencies = [];
+
+        foreach ($parameters as $parameter) {
+            $dependency = $parameter->getClass();
+            if (is_null($dependency)) {
+                $dependencies[] = $this->resolveNonClass($parameter);
+            } else {
+                $dependencies[] = $this->make($dependency->name);
+            }
+        }
+
+        return $dependencies;
+    }
+
+    private function resolveNonClass($parameter)
+    {
+        if ($parameter->isDefaultValueAvailable()) {
+            return $parameter->getDefaultValue();
+        }
+
+        throw new \Exception('I have no idea what to do here');
     }
 
     public function instance($abstract, $instance)

@@ -15,9 +15,9 @@ class Kernel implements \Bootdi\Contracts\Http\Kernel
      */
     protected $app;
 
-    public function __construct()
+    public function __construct(App $app)
     {
-        $this->app = app();
+        $this->app = $app;
     }
 
     public function bootstrap()
