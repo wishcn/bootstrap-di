@@ -36,6 +36,11 @@ abstract class Container implements ContractsContainer
         self::$instance = $instance;
     }
 
+    protected function getAlias($alias)
+    {
+        return isset($this->alias[$alias]) ? $this->alias[$alias] : $alias;
+    }
+
     protected function alias($abstract, $alias)
     {
         $this->alias[$alias] = $this->normalize($abstract);
@@ -49,6 +54,8 @@ abstract class Container implements ContractsContainer
      */
     public function make($abstract, $parameters = [])
     {
+        $abstract = $this->getAlias($abstract);
+
         $normalAbstract = $this->normalize($abstract);
         if ( $this->container->offsetExists($normalAbstract) ) {
             return $this->container->offsetGet($normalAbstract);

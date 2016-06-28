@@ -42,7 +42,8 @@ class App extends Container
     private function registerCoreContainerAliases()
     {
         $aliases = [
-            'app' => ['Bootdi\App', 'Bootdi\Container\Container',],
+            'app'       => ['Bootdi\Contracts\Container\Container', 'Bootdi\Container\Container', 'Bootdi\App',],
+            'container' => ['Bootdi\Contracts\Container\Container', 'Bootdi\Container\Container',],
         ];
 
         foreach ($aliases as $key => $aliases) {
